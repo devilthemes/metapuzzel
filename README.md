@@ -1,2 +1,2 @@
 # metapuzzel
-simple puzzel game
+simple puzzel game for meta 100
