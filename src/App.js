@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [boxes, setBoxes] = useState([0,0,0,0,0]);
-  const cards = [1,2,3,4,5];
+  const [boxes, setBoxes] = useState([0,0,0,0,0,0,0,0,0,0]);
+  const [won,setWon] = useState(false);
+  const cards = [1,2,3,4,5,6,7,8,9,10];
   const [suffelCards,setSuffelCards] = useState([])
   const intialMsg = 'Please drag image into appropriate box to arrage';
   const [msg,setMsg]=useState(intialMsg);
+  const link = "https://metahorizon.com";
   const allowDrop = (e) => {
     e.preventDefault();
   };
@@ -29,6 +31,12 @@ function App() {
     }
   
     return array;
+  }
+  const redirectUrl = () =>{
+    if(won){
+    
+      window.open(link, "_blank");
+    }
   }
   const drop = (e) => {
     e.preventDefault();
@@ -63,18 +71,20 @@ function App() {
     let total = boxes.filter(item=>item === 1);
     if(total.length === boxes.length){
       setTimeout(()=>{
-        setMsg("!!! Great, You won !!!");
+        setMsg("!!! Great, You won . Now you click on above image !!!");
+        setWon(true)
       },100)
       
     }
   },[boxes])
   return (
     <div className="App">
-      <h1>Fix Puzzel</h1>
+      <h1>Puzzle Game</h1>
+      <img src="father.png" width="200" className="preview" />
       <ul className="stage">
         {
           cards.map((item,index)=>(<li data-id={item} data-index={index} onDrop={drop} onDragOver={allowDrop}>
-          {boxes[index] === 1 && <img  src={`img${item}.png`} />}
+          {boxes[index] === 1 && <img onClick={redirectUrl}  src={`img${item}.png`} />}
         </li>))
         }
        
@@ -85,7 +95,7 @@ function App() {
       }
       <div class="msg">{msg}</div>
      </div>
-    
+ 
     </div>
   );
 }

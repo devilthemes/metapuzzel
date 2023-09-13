@@ -42,11 +42,13 @@
   }
 }
 
-ul.stage { display:flex; margin:0 0 20px 0;  height:114px;  padding:0px; list-style: none;}
-ul.stage li {display:flex; flex:1; padding:0px; margin:0px; min-width:100px;  height:114px; border:solid 1px rgba(0,0,0,0.3);justify-content: center;align-items: center;  }
+ul.stage { display:flex; margin:15px 0 15px 0;   padding:0px; list-style: none; max-width: 510px; min-width: 510px; width:510px; flex-wrap: wrap;}
+ul.stage li {border-radius:10px; display:flex; flex:1; padding:0px; margin:0px; min-width:100px;  height:167px; border:solid 1px rgba(0,0,0,0.3);justify-content: center;align-items: center;  }
 ul.stage li button {font-size:50px}
-.img{border:solid 1px  rgba(0,0,0,0.3); margin:5px }
+ul.stage li img{border-radius:10px;}
+.img{border:solid 1px  rgba(0,0,0,0.3); margin:5px; border-radius:10px }
 .card{
-  display:flex; flex:1; margin:5px;border:solid 1px  rgba(0,0,0,0.3);  background:rgba(0,0,0,0.1);justify-content: center;align-items: center; width:100px; height:100px;
+  display:flex; flex:1; margin:5px;border:solid 1px  rgba(0,0,0,0.3);  background:rgba(0,0,0,0.1);justify-content: center;align-items: center; width:100px; height:167px;
 }
 .msg{font-size:20px}
+.preview{border-radius:10px; }
