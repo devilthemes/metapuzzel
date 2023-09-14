@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const [boxes, setBoxes] = useState([0,0,0,0,0,0,0,0,0,0]);
+  const [boxes, setBoxes] = useState([0,0,0,0,0,0,0,0,0]);
   const [won,setWon] = useState(false);
-  const cards = [1,2,3,4,5,6,7,8,9,10];
+  const cards = [1,2,3,4,5,6,7,8,9];
   const [suffelCards,setSuffelCards] = useState([])
   const intialMsg = 'Please drag image into appropriate box to arrage';
   const [msg,setMsg]=useState(intialMsg);
@@ -32,12 +32,7 @@ function App() {
   
     return array;
   }
-  const redirectUrl = () =>{
-    if(won){
-    
-      window.open(link, "_blank");
-    }
-  }
+ 
   const drop = (e) => {
     e.preventDefault();
     var data = e.dataTransfer.getData("text");
@@ -53,11 +48,11 @@ function App() {
       cloneSuffelCards = cloneSuffelCards.filter(item=>item!==parseInt(data));
       console.log(cloneSuffelCards)
       setSuffelCards(cloneSuffelCards);
-      setMsg("!!! Yeap !!!");
+      setMsg("😉 Yeap !!!");
       
     } else {
       cloneData[index] = 0;
-      setMsg("!!! Oops, does not match !!!");
+      setMsg("😜 Oops, does not match !!!");
     }
     console.log(cloneData);
     setBoxes(cloneData);
@@ -71,7 +66,7 @@ function App() {
     let total = boxes.filter(item=>item === 1);
     if(total.length === boxes.length){
       setTimeout(()=>{
-        setMsg("!!! Great, You won . Now you click on above image !!!");
+        setMsg("!!! 💪 Great, You won ⭐⭐⭐!!!");
         setWon(true)
       },100)
       
@@ -80,22 +75,26 @@ function App() {
   return (
     <div className="App">
       <h1>Puzzle Game</h1>
-      <img src="father.png" width="200" className="preview" />
-      <ul className="stage">
+      <img src="father.jpg" width="150" className="preview" />
+    
+        <ul className="stage">
+          {
+            cards.map((item,index)=>(<li data-id={item} data-index={index} onDrop={drop} onDragOver={allowDrop}>
+            {boxes[index] === 1 && <img width="100"  src={`img${item}.jpg`} />}
+          </li>))
+          }
+        
+        </ul>
+        <div>
         {
-          cards.map((item,index)=>(<li data-id={item} data-index={index} onDrop={drop} onDragOver={allowDrop}>
-          {boxes[index] === 1 && <img onClick={redirectUrl}  src={`img${item}.png`} />}
-        </li>))
-        }
-       
-      </ul>
-      <div>
-      {
-        suffelCards && suffelCards.length>0 && suffelCards.map(item=><img class="img" id={item} draggable="true" onDragStart={drag} src={`img${item}.png`} />)
+        suffelCards && suffelCards.length>0 && suffelCards.map(item=><img class="img" id={item} width="100" draggable="true" onDragStart={drag} src={`img${item}.jpg`} />)
       }
-      <div class="msg">{msg}</div>
-     </div>
- 
+        </div>
+   
+   
+   
+     <div class="msg">{msg}</div>
+      <div class="develop">Develop By : Hira Kumar Maharjan <br /> (Sr. Frontend Developer) <br /> <b>Hiup Solution</b></div>
     </div>
   );
 }
